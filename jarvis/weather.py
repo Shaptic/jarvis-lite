@@ -16,13 +16,13 @@ import requests_cache
 from   retry_requests import retry
 import numpy as np
 
-from env   import ENV
-from log   import L
-from tasks import *
+from .env   import ENV
+from .log   import L
+from .tasks import *
 
-import prompts
-import chatbot
-import ip
+from . import prompts
+from . import chatbot
+from . import ip
 
 
 class WeatherTask(Task):

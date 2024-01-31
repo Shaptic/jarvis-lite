@@ -1,4 +1,4 @@
-import chatbot
+from . import chatbot
 
 
 chatbot.Chatbot(

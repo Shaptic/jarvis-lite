@@ -1,4 +1,4 @@
-# JarvisLite: A simple personal assistant backed by OpenAI.
+# JarvisLite: The simplest personal assistant.
 
 JarvisLite is a proof-of-concept that demonstrates how to build a very simple personal assistant with minimal code using a combination of OpenAI's APIs.
 
@@ -10,17 +10,17 @@ The architecture is relatively simple:
 
 Visually,
 
-    your voice -> transcription (Whisper model) -> 
-    text LLM (GPT4 model) -> a TypeScript interface distinguishing a command ->
-    execution of the command -> [
-      if weather:
-        fetch weather at given location and time -> text LLM -> 
-        a nice description of weather conditions
-
-      elif lists:
-        text LLM -> interpret what way we are manipulating the list ->
-        execute the action (modify, read off, etc.)
-    ] -> speak result
+    your voice -> transcription (Whisper model) -> GPT4 -> 
+      a TypeScript interface distinguishing a command -> [
+        if weather:
+          fetch weather at given location and time ->
+            text LLM ->
+              a nice description of weather conditions
+        elif lists:
+          text LLM ->
+            interpret what way we are manipulating the list ->
+              execute the action (modify, read off, etc.)
+      ] -> speak result
 
 ## Features
 
@@ -47,7 +47,7 @@ pip install git+https://github.com/dscripka/openWakeWord.git
 You will need an OpenAI API key. Once you have it, running the assistant is as simple as:
 
 ```bash
-cd src/ && OPENAI_KEY="your_api_key" python main.py
+OPENAI_KEY="your_api_key" python -m jarvis
 ```
 
 The activation phrase is "Hey Jarvis".

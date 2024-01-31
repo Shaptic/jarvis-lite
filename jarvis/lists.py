@@ -4,9 +4,9 @@ import collections
 import chatbot
 import prompts
 
-from log   import L
-from env   import ENV
-from tasks import Task
+from .log   import L
+from .env   import ENV
+from .tasks import Task
 
 
 class ListTask(Task):

@@ -2,10 +2,10 @@ import openai
 
 from env import ENV
 
-import prompts
-import chatbot
-import weather
-import lists
+from . import prompts
+from . import chatbot
+from . import weather
+from . import lists
 
 
 class Orchestra:

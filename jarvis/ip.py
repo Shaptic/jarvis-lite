@@ -8,8 +8,8 @@ import csv
 
 import requests
 
-from log import L
-from env import ENV
+from .log import L
+from .env import ENV
 
 
 class IPLookupDB:
@@ -45,8 +45,9 @@ class IPLookupDB:
         if self.cond: self.cond.notify_all()
 
     def get_city(self) -> str:
-        if os.path.isfile('ipcache.txt'):
-            with open('ipcache.txt', 'rt') as f:
+        cache_file = os.path.join(ENV.get('data'), 'ipcache.txt')
+        if os.path.isfile(cache_file):
+            with open(cache_file, 'rt') as f:
                 ip = f.read().strip()
         else:
             resp = requests.get("https://api.ipify.org?format=json")
@@ -54,7 +55,7 @@ class IPLookupDB:
                 raise ValueError(str(resp))
 
             ip = resp.json()['ip']
-            with open('ipcache.txt', 'wt') as f:
+            with open(cache_file, 'wt') as f:
                 f.write(ip)
 
         # resp = requests.get(f'https://ipapi.co/{ip}/json')

@@ -17,12 +17,12 @@ import openwakeword.model
 import numpy  as np
 from   openai import OpenAI
 
-import orchestra
-import chatbot
-import tasks
+from . import orchestra
+from . import chatbot
+from . import tasks
 
-from env import ENV
-from log import L
+from .env import ENV
+from .log import L
 
 
 BING = pydub.AudioSegment.from_file(os.path.join(ENV.get('data'), 'bing.mp3'))
