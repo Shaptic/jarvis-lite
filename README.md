@@ -2,6 +2,16 @@
 
 JarvisLite is a proof-of-concept that demonstrates how to build a very simple personal assistant with minimal code using a combination of OpenAI's APIs.
 
+## Features
+
+Besides just conversing with a chatbot, it supports two more features that a personal assistant would be capable of:
+ - checking the weather
+ - manipulating categories of lists (like a TODO or grocery list)
+
+Each of these has full natural language support: for example, you can ask whether (heh) or not you need to wear a rain jacket tomorrow.
+
+## Architecture
+
 The architecture is relatively simple:
 
  1. A simple state machine transitions from listening to your voice to parsing your commands to executing the requested task.
@@ -10,25 +20,15 @@ The architecture is relatively simple:
 
 Visually,
 
-    your voice -> transcription (Whisper model) -> GPT4 -> 
+    speak -> Whisper -> GPT-4 -> 
       a TypeScript interface distinguishing a command -> [
         if weather:
           fetch weather at given location and time ->
-            text LLM ->
+            GPT4 ->
               a nice description of weather conditions
         elif lists:
-          text LLM ->
-            interpret what way we are manipulating the list ->
-              execute the action (modify, read off, etc.)
+          GPT4 -> how are we manipulating the list? -> do that
       ] -> speak result
-
-## Features
-
-Besides just conversing with a chatbot, it supports two more features that a personal assistant would be capable of:
- - checking the weather
- - manipulating categories of lists (like a TODO or grocery list)
-
-Each of these has full natural language support: for example, you can ask whether (heh) or not you need to wear a rain jacket tomorrow.
 
 ## Installation
 
@@ -38,7 +38,7 @@ source ./.venv/bin/activate
 pip install -r requirements.txt
 ```
 
-If you get an error installing `openwakeword`, try dropping the line and installing it directly from the GitHub repository, instead:
+If you get an error installing [`openwakeword`](https://github.com/dscripka/openWakeWord), try dropping the line and installing it directly from the GitHub repository, instead:
 
 ```bash
 pip install git+https://github.com/dscripka/openWakeWord.git
